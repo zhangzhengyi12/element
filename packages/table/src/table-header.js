@@ -388,6 +388,7 @@ export default {
             const columnWidth = finalLeft - startColumnLeft;
             column.width = column.realWidth = columnWidth;
             table.$emit('header-dragend', column.width, startLeft - startColumnLeft, column, event);
+            table._onHeaderWidthChange();
 
             this.store.scheduleLayout();
 

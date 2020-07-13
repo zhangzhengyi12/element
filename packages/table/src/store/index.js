@@ -67,10 +67,32 @@ Watcher.prototype.mutations = {
     }
   },
 
+  hiddenColoumn(states, index, parent) {
+    let array = states._columns;
+    if (array) {
+      array.splice(index, 1);
+    }
+
+    this.updateColumns(); // hack for dynamics remove column
+    this.scheduleLayout();
+  },
+
+  changeSort(states) {
+    let temp = states._columns[0];
+    states._columns[0] = states._columns[1];
+    states._columns[1] = temp;
+
+    this.updateColumns(); // hack for dynamics remove column
+    this.scheduleLayout();
+  },
+
   sort(states, options) {
     const { prop, order, init } = options;
     if (prop) {
-      const column = arrayFind(states.columns, column => column.property === prop);
+      const column = arrayFind(
+        states.columns,
+        (column) => column.property === prop
+      );
       if (column) {
         column.order = order;
         this.updateSort(column, prop, order);
