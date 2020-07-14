@@ -53,7 +53,7 @@
 
 <script>
 import { on, off } from 'element-ui/src/utils/dom';
-import { rafThrottle, isFirefox } from 'element-ui/src/utils/util';
+import { rafThrottle } from 'element-ui/src/utils/util';
 
 const Mode = {
   CONTAIN: {
@@ -66,7 +66,8 @@ const Mode = {
   }
 };
 
-const mousewheelEventName = isFirefox() ? 'DOMMouseScroll' : 'mousewheel';
+const isFirefox = typeof navigator !== 'undefined' && navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+const mousewheelEventName = isFirefox ? 'DOMMouseScroll' : 'mousewheel';
 
 export default {
   name: 'elImageViewer',

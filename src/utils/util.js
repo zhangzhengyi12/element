@@ -123,7 +123,7 @@ export const isEdge = function() {
 };
 
 export const isFirefox = function() {
-  return !Vue.prototype.$isServer && !!window.navigator.userAgent.match(/firefox/i);
+  return !!window.navigator.userAgent.match(/firefox/i);
 };
 
 export const autoprefixer = function(style) {
